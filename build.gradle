@@ -23,7 +23,15 @@ task seedUserData(type: Exec) {
      args = ["-d", "test", "-c", "users", "--file", "users.seed.json", "--jsonArray"]
 }
 
+task seedFlowerData(type: Exec) {
+     group = 'Database'
+     description = 'Seeds the flower collection on local test DB using flowers.seed.json'
+     executable = "mongoimport"
+     args = ["-d", "test", "-c", "flowers", "--file", "flowers.seed.json", "--jsonArray"]
+}
+
 task seedMongoDB { }
 seedMongoDB.dependsOn(clearMongoDB)
 seedMongoDB.dependsOn(seedToDoData)
 seedMongoDB.dependsOn(seedUserData)
+seedMongoDB.dependsOn(seedFlowerData)
