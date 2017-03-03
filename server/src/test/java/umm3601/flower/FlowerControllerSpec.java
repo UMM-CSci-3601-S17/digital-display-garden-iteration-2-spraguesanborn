@@ -107,7 +107,7 @@ public class FlowerControllerSpec
         assertEquals("Names should match", expectedCommonNames, commonNames);
     }
 /*
-This test is failing...
+This test is failing
     @Test
     public void getSrcAFlowers() {
         Map<String, String[]> argMap = new HashMap<>();
