@@ -11,6 +11,7 @@ import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
+import {FlowerComponent} from "./app/flowers/flower.component";
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { PipeModule } from './pipe.module';
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        UserListComponent
+        UserListComponent,
+        FlowerComponent
     ],
     providers: [ UserListService ],
     bootstrap: [ AppComponent ]
