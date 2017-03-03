@@ -1,0 +1,26 @@
+[
+  {
+    "_id" : { "$oid" : "16852" },
+    "commonName" : "Ageratum",
+    "cultivar" : "Tall Blue Planet",
+    "source" :"source 1",
+    "gardenLocation" : "Cutting",
+    "year" : 2016
+  },
+  {
+    "_id" : { "$oid" : "16853" },
+    "commonName" : "Amaranth",
+    "cultivar" : "Hot Biscuits",
+    "source" :"source 2",
+    "gardenLocation" : "Cutting",
+    "year" : 2016
+  },
+  {
+    "_id" : { "$oid" : "16843" },
+    "commonName" : "Angel's Trumpet",
+    "cultivar" : "Blackcurrant Swirl",
+    "source" :"source 3",
+    "gardenLocation" : "Sensory",
+    "year" : 2016
+  }
+]
