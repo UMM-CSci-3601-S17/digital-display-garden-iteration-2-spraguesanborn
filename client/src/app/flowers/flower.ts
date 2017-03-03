@@ -3,7 +3,7 @@
  */
 export interface Flower {
     _id: string,
-    CommonName: string,
+    commonName: string,
     cultivar: string,
     source: string,
     gardenLocation: string,
