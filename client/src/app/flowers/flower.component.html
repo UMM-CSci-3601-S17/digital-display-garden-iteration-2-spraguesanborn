@@ -1,2 +1,15 @@
 <h2>Flower Page</h2>
 <p>{{ text }}</p>
+<div class = "responseButtonDiv">
+<button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+<button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+</div>
+<br>
+<h3>Comment:</h3>
+<div class = "fullComment">
+<textarea class = "commentBox" name='comment' id='comment'></textarea><br />
+
+<input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
+</div>
+
+<input class="submitButton" type='submit' value='Submit' />
