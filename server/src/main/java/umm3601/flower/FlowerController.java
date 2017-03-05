@@ -42,9 +42,24 @@ public class FlowerController {
     public String listFlowers(Map<String, String[]> queryParams) {
         Document filterDoc = new Document();
 
+        if (queryParams.containsKey("cultivar")) {
+            String targetCultivar = queryParams.get("cultivar")[0];
+            filterDoc = filterDoc.append("cultivar", targetCultivar);
+        }
+
+        if (queryParams.containsKey("source")) {
+            String targetSource = queryParams.get("source")[0];
+            filterDoc = filterDoc.append("source", targetSource);
+        }
+
+        if (queryParams.containsKey("gardenLocation")) {
+            String targetLocation = queryParams.get("gardenLocation")[0];
+            filterDoc = filterDoc.append("gardenLocation", targetLocation);
+        }
+
         if (queryParams.containsKey("year")) {
-            int targetAge = Integer.parseInt(queryParams.get("year")[0]);
-            filterDoc = filterDoc.append("year", targetAge);
+            int targetYear = Integer.parseInt(queryParams.get("year")[0]);
+            filterDoc = filterDoc.append("year", targetYear);
         }
 
         FindIterable<Document> matchingFlowers = flowerCollection.find(filterDoc);
