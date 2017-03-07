@@ -11,7 +11,7 @@ import { Flower } from "./flower";
 })
 
 // Component class
-export class FlowerComponent {
+export class FlowerComponent implements OnInit{
     public bedNames: string[];
     public flowerNames: string[];
 
@@ -21,10 +21,8 @@ export class FlowerComponent {
 
     private parseFlowers(flowers: Flower[]) {
         var tempNames: string[] = [];
-        var count = 0;
         for (let each of flowers) {
-            tempNames[count] = each.cultivar;
-            count++;
+            tempNames.push(each.cultivar);
         }
         return tempNames;
 
@@ -37,7 +35,12 @@ export class FlowerComponent {
                 console.log(err);
             }
         );
-        this.flowerService.getFlowerNames("GL1").subscribe(
+
+
+    }
+
+    onSelect(bed: string): void {
+        this.flowerService.getFlowerNames(bed).subscribe(
             flowers => this.flowerNames = this.parseFlowers(flowers),
             err => {
                 console.log(err);
