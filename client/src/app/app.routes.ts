@@ -9,7 +9,8 @@ import {FlowerComponent} from "./flowers/flower.component"
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'users', component: UserListComponent },
-    { path: 'flowers', component: FlowerComponent }
+    { path: 'flowers', component: FlowerComponent },
+    { path: 'flowers', component: FlowerComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
