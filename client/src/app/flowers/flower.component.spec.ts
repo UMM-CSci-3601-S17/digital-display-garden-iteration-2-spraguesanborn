@@ -6,18 +6,18 @@ import {FlowerComponent} from "./flower.component";
 
 describe("Flower Page", () => {
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [FlowerComponent]
-        });
-    });
-
-    beforeEach(async(() => {
-        TestBed.compileComponents();
-    }));
-
-    it("says a message", async(() => {
-        const comp = TestBed.createComponent(FlowerComponent);
-        expect(comp.componentInstance.text).toBe("More Placeholder Text");
-    }));
+    // beforeEach(() => {
+    //     TestBed.configureTestingModule({
+    //         declarations: [FlowerComponent]
+    //     });
+    // });
+    //
+    // beforeEach(async(() => {
+    //     TestBed.compileComponents();
+    // }));
+    //
+    // it("says a message", async(() => {
+    //     const comp = TestBed.createComponent(FlowerComponent);
+    //     expect(comp.componentInstance.text).toBe("More Placeholder Text");
+    // }));
 });
