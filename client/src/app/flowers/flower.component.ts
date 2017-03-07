@@ -19,6 +19,9 @@ import { Feedback } from './feedback';
 export class FlowerComponent implements OnInit{
     public bedNames: string[];
     public flowerNames: string[];
+    public currentBed: string;
+    public currentFlower: string;
+    public flower: Flower;
     public text: string;
     public myForm: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -49,9 +52,20 @@ export class FlowerComponent implements OnInit{
         });
     }
 
-    onSelect(bed: string): void {
-        this.flowerService.getFlowerNames(bed).subscribe(
+    onSelectBed(currentBed: string): void {
+        this.currentBed = currentBed;
+        this.flowerService.getFlowerNames(currentBed).subscribe(
             flowers => this.flowerNames = this.parseFlowers(flowers),
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    onSelectFlower(currentFlower: string): void {
+        this.currentFlower = currentFlower;
+        this.flowerService.getFlower(this.currentBed, currentFlower).subscribe(
+            flower => this.flower = flower[0],
             err => {
                 console.log(err);
             }

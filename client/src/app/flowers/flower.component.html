@@ -13,7 +13,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li class="active" *ngFor="let bed of bedNames" (click)="onSelect(bed)">{{bed}}</li>
+            <li class="active" *ngFor="let currentBed of bedNames" (click)="onSelectBed(currentBed)">{{currentBed}}</li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -32,12 +32,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
-            <li class="active" *ngFor="let flower of flowerNames"><a href="#">{{flower}}</a></li>
+            <li class="active" *ngFor="let currentFlower of flowerNames" (click)="onSelectFlower(currentFlower)">{{currentFlower}}</li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
-<h1>Flower Page</h1>
-<h4>{{ text }}</h4>
+<h2 *ngIf="flower">{{ flower.cultivar }}</h2>
+<h4 *ngIf="flower">Common name: {{ flower.commonName }}</h4>
+<h4 *ngIf="flower">Source: {{ flower.source }}</h4>
 <div class = "responseButtonDiv">
 <button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 <button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-down"></span></button>

@@ -9,6 +9,10 @@ export class FlowerService {
     private flowerUrl: string = API_URL + "flowers";
     constructor(private http:Http) { }
 
+    getFlower(garden: string, cultivar:string): Observable<any> {
+        return this.http.request(this.flowerUrl + "?gardenLocation=" + garden + "&cultivar=" + cultivar).map(res => res.json());
+    }
+
     getFlowerNames(garden: string): Observable<Flower[]> {
         return this.http.request(this.flowerUrl + "?gardenLocation=" + garden).map(res => res.json());
     }
@@ -16,4 +20,6 @@ export class FlowerService {
     getBedNames(): Observable<any> {
         return this.http.request(this.bedUrl).map(res => res.json());
     }
+
+
 }
