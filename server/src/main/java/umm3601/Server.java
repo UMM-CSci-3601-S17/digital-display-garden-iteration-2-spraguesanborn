@@ -1,6 +1,7 @@
 package umm3601;
 
 import umm3601.user.UserController;
+import umm3601.flower.FlowerController;
 
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         UserController userController = new UserController();
+        FlowerController flowerController = new FlowerController();
 
         options("/*", (request, response) -> {
 
@@ -47,6 +49,26 @@ public class Server {
             res.type("application/json");
             String id = req.params("id");
             return userController.getUser(id);
+        });
+
+
+        // List beds
+        get("api/beds", (req, res) -> {
+            res.type("application/json");
+            return flowerController.listBeds();
+        });
+
+        // List flowers
+        get("api/flowers", (req, res) -> {
+            res.type("application/json");
+            return flowerController.listFlowers(req.queryMap().toMap());
+        });
+
+        // Get a flower
+        get("api/flowers/:id", (req, res) -> {
+            res.type("application/json");
+            String id = req.params("id");
+            return flowerController.getFlower(id);
         });
 
         // Get average ages by company

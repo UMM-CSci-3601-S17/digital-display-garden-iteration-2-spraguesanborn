@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h1>Flower Page</h1>
+<h4>{{ text }}</h4>
+<div class = "responseButtonDiv">
+<button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+<button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+</div>
+<br>
+<h3>Comment:</h3>
+<!--<div class = "fullComment">-->
+    <!--<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">-->
+        <!--<div>-->
+            <!--<label>Tell Us Your Thoughts!</label>-->
+            <!--<input type="text" formControlName="comment" class="commentBox">-->
+            <!--<small [hidden]="myForm.controls.comment.valid || (myForm.controls.comment.pristine && !submitted)">-->
+            <!--</small>-->
+        <!--</div>-->
+        <!--<button class="submitButton" type="submit">Submit</button>-->
+    <!--</form>-->
+<!--</div>-->
+<hr class = "flowerPageHR">
+<h3>Other Visitor's Thoughts</h3>
+<hr class = "flowerPageHR">
 
-</body>
-</html>
+
+<div class = "fullComment">
+    <form action="/action_page.php">
+        <textarea class = "commentBox" name='comment' id='comment'></textarea><br />
+
+        <input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
+        <input class="submitButton" type='submit' value='Submit' />
+    </form>
+</div>

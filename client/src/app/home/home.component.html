@@ -1,2 +1,13 @@
-<h2>Home</h2>
-<p>{{ text }}</p>
+<img src="wcroc.png" class="img-responsive img-rounded">
+<br>
+
+<button *ngFor="let bed of beds" [routerLink]="['/flowers']" type="button" class="btn btn-color btn-block">{{ bed }}</button>
+<br>
+
+<style>
+    .btn-color {
+        background-color: floralwhite;
+        border: 1px solid darkgreen;
+        color: darkgreen;
+    }
+</style>
