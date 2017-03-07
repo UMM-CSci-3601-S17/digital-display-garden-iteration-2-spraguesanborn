@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
 import {FlowerComponent} from "./app/flowers/flower.component";
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
     imports: [
@@ -21,14 +24,15 @@ import {FlowerComponent} from "./app/flowers/flower.component";
         JsonpModule,
         routing,
         FormsModule,
-        PipeModule
+        PipeModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         NavbarComponent,
         UserListComponent,
-        FlowerComponent
+        FlowerComponent,
     ],
     providers: [ UserListService, HomeService ],
     bootstrap: [ AppComponent ]
