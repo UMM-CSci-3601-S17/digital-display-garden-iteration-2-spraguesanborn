@@ -39,6 +39,7 @@
 <h2 *ngIf="flower">{{ flower.cultivar }}</h2>
 <h4 *ngIf="flower">Common name: {{ flower.commonName }}</h4>
 <h4 *ngIf="flower">Source: {{ flower.source }}</h4>
+
 <div class = "responseButtonDiv">
 <button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 <button class="responseButton" (click)="clicked($event)"><span class="glyphicon glyphicon-thumbs-down"></span></button>

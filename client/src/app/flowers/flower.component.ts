@@ -11,7 +11,9 @@ import { Feedback } from './feedback';
     styles: ['button.responseButton { border: 2px solid #4CAF50; width: 49%; height: 60px}',
         'span.glyphicon {font-size: 40px;}', 'input.commentBox {width: 99%; font-size: 200%; height: 80px;border: 2px solid #4CAF50;}',
         'button.submitButton {width: 60%; height:60px; border: 2px solid #4CAF50; font-size: 40px;' +
-        ' display: block; margin: auto;}', 'div.fullComment {width: 99%; margin: auto;}', 'hr.flowerPageHR {border: 1px solid #4CAF50;}'],
+        ' display: block; margin: auto;}', 'div.fullComment {width: 99%; margin: auto;}', 'hr.flowerPageHR {border: 1px solid #4CAF50;}',
+        'li.active {font-size: 30px; padding-bottom: 15px; border-bottom: solid green;}'],
+
     selector: 'my-app',
 })
 
@@ -49,6 +51,8 @@ export class FlowerComponent implements OnInit{
         );
         this.myForm = this._fb.group({
             comment: ['', [<any>Validators.required]],
+            like: [0, [<any>Validators.required]],
+            dislike: [0, [<any>Validators.required]],
         });
     }
 
