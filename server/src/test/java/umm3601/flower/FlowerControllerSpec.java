@@ -106,8 +106,7 @@ public class FlowerControllerSpec
         List<String> expectedCommonNames = Arrays.asList("daisy", "lily", "rose", "tulip");
         assertEquals("Names should match", expectedCommonNames, commonNames);
     }
-/*
-This test is failing
+
     @Test
     public void getSrcAFlowers() {
         Map<String, String[]> argMap = new HashMap<>();
@@ -123,7 +122,7 @@ This test is failing
                 .collect(Collectors.toList());
         List<String> expectedCommonNames = Arrays.asList("lily", "tulip");
         assertEquals("Names should match", expectedCommonNames, commonNames);
-    }*/
+    }
 
     @Test
     public void getRoseById() {

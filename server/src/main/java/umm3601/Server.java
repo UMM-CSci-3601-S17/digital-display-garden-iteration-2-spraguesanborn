@@ -52,6 +52,12 @@ public class Server {
         });
 
 
+        // List beds
+        get("api/beds", (req, res) -> {
+            res.type("application/json");
+            return flowerController.listBeds();
+        });
+
         // List flowers
         get("api/flowers", (req, res) -> {
             res.type("application/json");

@@ -1,10 +1,7 @@
 package umm3601.flower;
 
 import com.mongodb.MongoClient;
-import com.mongodb.client.AggregateIterable;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Sorts;
@@ -42,9 +39,24 @@ public class FlowerController {
     public String listFlowers(Map<String, String[]> queryParams) {
         Document filterDoc = new Document();
 
+        if (queryParams.containsKey("cultivar")) {
+            String targetCultivar = queryParams.get("cultivar")[0];
+            filterDoc = filterDoc.append("cultivar", targetCultivar);
+        }
+
+        if (queryParams.containsKey("source")) {
+            String targetSource = queryParams.get("source")[0];
+            filterDoc = filterDoc.append("source", targetSource);
+        }
+
+        if (queryParams.containsKey("gardenLocation")) {
+            String targetLocation = queryParams.get("gardenLocation")[0];
+            filterDoc = filterDoc.append("gardenLocation", targetLocation);
+        }
+
         if (queryParams.containsKey("year")) {
-            int targetAge = Integer.parseInt(queryParams.get("year")[0]);
-            filterDoc = filterDoc.append("year", targetAge);
+            int targetYear = Integer.parseInt(queryParams.get("year")[0]);
+            filterDoc = filterDoc.append("year", targetYear);
         }
 
         FindIterable<Document> matchingFlowers = flowerCollection.find(filterDoc);
@@ -64,6 +76,22 @@ public class FlowerController {
 
         return flower.toJson();
     }
+
+    // Get all the names of the beds in the DB
+    public String listBeds() {
+        Document output = new Document();
+        DistinctIterable<String> beds
+                = flowerCollection
+                .distinct("gardenLocation",String.class);
+
+        for (String bed: beds){
+            output.append(bed,bed);
+        }
+
+        return output.toJson();
+    }
+
+
 
     // Get the average age of all users by company
 //    public String getAverageAgeByCompany() {
