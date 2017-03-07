@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter, ElementRef} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FlowerService } from "./flower.service";
+import { Flower } from "./flower";
 
 @Component({
     templateUrl: 'flower.component.html',
@@ -10,11 +12,37 @@ import { Component, Input, Output, EventEmitter, ElementRef} from '@angular/core
 
 // Component class
 export class FlowerComponent {
-    public text: string;
+    public bedNames: string[];
+    public flowerNames: string[];
 
+    constructor(private flowerService: FlowerService) {
+        // this.users = this.userListService.getUsers();
+    }
 
-    constructor() {
-        this.text = "Information about flower";
+    private parseFlowers(flowers: Flower[]) {
+        var tempNames: string[] = [];
+        var count = 0;
+        for (let each of flowers) {
+            tempNames[count] = each.cultivar;
+            count++;
+        }
+        return tempNames;
+
+    }
+
+    ngOnInit(): void {
+        this.flowerService.getBedNames().subscribe(
+            beds => this.bedNames = Object.keys(beds),
+            err => {
+                console.log(err);
+            }
+        );
+        this.flowerService.getFlowerNames("GL1").subscribe(
+            flowers => this.flowerNames = this.parseFlowers(flowers),
+            err => {
+                console.log(err);
+            }
+        );
     }
 
 }

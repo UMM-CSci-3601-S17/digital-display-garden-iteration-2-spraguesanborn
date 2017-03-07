@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
 import {FlowerComponent} from "./app/flowers/flower.component";
+import { FlowerService } from './app/flowers/flower.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -34,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         UserListComponent,
         FlowerComponent,
     ],
-    providers: [ UserListService, HomeService ],
+    providers: [ UserListService, HomeService, FlowerService ],
     bootstrap: [ AppComponent ]
 })
 
