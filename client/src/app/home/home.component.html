@@ -1,4 +1,4 @@
-<img src="wcroc.png" class="img-responsive img-rounded">
+<img src="wcroc.png" class="img-responsive bg-img">
 <br>
 
 <button *ngFor="let bed of beds" [routerLink]="['/flowers']" type="button" class="btn btn-color btn-block">{{ bed }}</button>
@@ -9,5 +9,9 @@
         background-color: floralwhite;
         border: 1px solid darkgreen;
         color: darkgreen;
+    }
+    .bg-img {
+        width: 100%;
+        z-index: auto;
     }
 </style>
