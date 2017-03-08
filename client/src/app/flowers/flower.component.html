@@ -41,7 +41,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
-            <li class="active our-font white-font" *ngFor="let currentFlower of flowerNames" (click)="onSelectFlower(currentFlower)">{{currentFlower}}</li>
+            <li class="active our-font white-font drop-down" *ngFor="let currentFlower of flowerNames" (click)="onSelectFlower(currentFlower)">{{currentFlower}}</li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -139,8 +139,8 @@
     }
     .drop-down {
         font-family: "Open Sans";
-        font-size: 30px;
-        padding-bottom: 15px;
-        border-bottom: solid green;}
+        font-size: 25px;
+        padding: 15px;
+    }
 
 </style>
