@@ -67,7 +67,7 @@ public class UserControllerSpec
         // It might be important to construct this _after_ the DB is set up
         // in case there are bits in the constructor that care about the state
         // of the database.
-        userController = new UserController();
+        userController = new UserController("test");
     }
 
     // http://stackoverflow.com/questions/34436952/json-parse-equivalent-in-mongo-driver-3-x-for-java
