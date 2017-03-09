@@ -30,7 +30,7 @@ public class FlowerController {
         MongoClient mongoClient = new MongoClient(); // Defaults!
 
         // Try connecting to a database
-        MongoDatabase db = mongoClient.getDatabase("test");
+        MongoDatabase db = mongoClient.getDatabase("ddg");
 
         flowerCollection = db.getCollection("flowers");
     }

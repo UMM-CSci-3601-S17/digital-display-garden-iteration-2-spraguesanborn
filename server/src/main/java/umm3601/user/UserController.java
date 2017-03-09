@@ -33,7 +33,7 @@ public class UserController {
         MongoClient mongoClient = new MongoClient(); // Defaults!
 
         // Try connecting to a database
-        MongoDatabase db = mongoClient.getDatabase("test");
+        MongoDatabase db = mongoClient.getDatabase("ddg");
 
         userCollection = db.getCollection("users");
     }
