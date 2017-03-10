@@ -7,7 +7,7 @@ import {FlowerComponent} from "./flowers/flower.component"
 
 // Route Configuration
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: FlowerComponent },
     { path: 'users', component: UserListComponent },
     { path: 'flowers', component: FlowerComponent }
 ];
