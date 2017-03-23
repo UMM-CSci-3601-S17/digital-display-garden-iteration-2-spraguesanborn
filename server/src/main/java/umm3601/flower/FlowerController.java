@@ -104,6 +104,15 @@ public class FlowerController {
         return true;
     }
 
+    public boolean incrementLikes(String body){
+        Document filter = new Document();
+        Document parsed = Document.parse(body);
+        filter.append("id", parsed.getString("plantID"));
+        flowerCollection.updateOne(filter, new Document("$inc", new Document("thumbsUp", 1)));
+
+        return true;
+    }
+
 
 
     // Get the average age of all users by company
