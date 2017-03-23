@@ -53,6 +53,7 @@ public class ExcelParser {
         for (int i = 0; i < keys.length; i++){
             if (keys[i].equals("gardenLocation")){
                 bedCol = i;
+                break;
             }
         }
 
@@ -61,14 +62,14 @@ public class ExcelParser {
         MongoCollection beds = ddg.getCollection("beds");
         beds.drop();
 
-        List<String> bedList = new ArrayList<String>();
+
         for (int i = 4; i < plants.length; i++){
             String currentBed = plants[i][bedCol];
 
             Bson filter = new Document("gardenLocation", currentBed);
 
             if (beds.count(filter) == 0){
-                beds.insertOne(new Document("bedName", currentBed));
+                beds.insertOne(new Document("gardenLocation", currentBed));
             }
         }
 
