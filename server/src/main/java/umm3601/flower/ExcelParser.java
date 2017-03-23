@@ -199,6 +199,7 @@ public class ExcelParser {
 
             Document doc = new Document();
             doc.putAll(map);
+            doc.append("thumbsUp", 0);
             plants.insertOne(doc);
         }
     }
