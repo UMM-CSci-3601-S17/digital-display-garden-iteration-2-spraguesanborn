@@ -19,6 +19,7 @@ import static com.mongodb.client.model.Filters.eq;
 public class FlowerController {
 
     private final MongoCollection<Document> flowerCollection;
+    private final MongoCollection<Document> commentCollection;
 
     public FlowerController(String dbName) throws IOException {
         // Set up our server address
@@ -33,6 +34,7 @@ public class FlowerController {
         MongoDatabase db = mongoClient.getDatabase(dbName);
 
         flowerCollection = db.getCollection("flowers");
+        commentCollection = db.getCollection("comments");
     }
 
     // List flowers
@@ -89,6 +91,17 @@ public class FlowerController {
         }
 
         return output.toJson();
+    }
+
+    public boolean postComment(String body){
+        Document insert = new Document();
+        Document parsed = Document.parse(body);
+        insert.append("plantID", parsed.getString("plantID"));
+        insert.append("comment", parsed.getString("comment"));
+
+        commentCollection.insertOne(insert);
+
+        return true;
     }
 
 

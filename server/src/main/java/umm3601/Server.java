@@ -81,6 +81,11 @@ public class Server {
             return flowerController.getFlower(id);
         });
 
+        post("api/flowers/postComment", (req, res) -> {
+            res.type("application/json");
+            return flowerController.postComment(req.body());
+        });
+
         // Get average ages by company
         get("api/avgUserAgeByCompany", (req, res) -> {
             res.type("application/json");

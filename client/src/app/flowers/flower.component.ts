@@ -27,6 +27,7 @@ export class FlowerComponent implements OnInit{
     public myForm: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     public events: any[] = []; // use later to display form changes
+    private commentSucceed: Boolean = false;
 
     constructor(private flowerService: FlowerService, private _fb: FormBuilder) {
         // this.users = this.userListService.getUsers();
@@ -79,8 +80,13 @@ export class FlowerComponent implements OnInit{
         this.submitted = true; // set form submit to true
 
         // check if model is valid
-        // if valid, call API to save customer
+        // if valid, call API to savse customer
         console.log(model, isValid);
+    }
+
+    postComment(): void{
+        this.flowerService.postComment("banana", "this is a cool banana")
+            .subscribe(cool => this.commentSucceed = cool);
     }
 
 }
