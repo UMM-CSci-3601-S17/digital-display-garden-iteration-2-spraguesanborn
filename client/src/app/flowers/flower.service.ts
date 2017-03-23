@@ -29,4 +29,12 @@ export class FlowerService {
 
         return this.http.post(this.flowerUrl + "/postComment", JSON.stringify(toInsert)).map(res => res.json());
     }
+
+    incrementLikes(plantID: string): Observable<Boolean> {
+        let toUpdate = {
+            plantID: plantID
+        };
+
+        return this.http.put(this.flowerUrl + "/thumbsUp", JSON.stringify(toUpdate)).map(res => res.json());
+    }
 }

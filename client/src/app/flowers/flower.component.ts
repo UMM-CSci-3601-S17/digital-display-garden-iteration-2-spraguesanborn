@@ -28,6 +28,7 @@ export class FlowerComponent implements OnInit{
     public submitted: boolean; // keep track on whether form is submitted
     public events: any[] = []; // use later to display form changes
     private commentSucceed: Boolean = false;
+    private incrementSucceed: Boolean = false;
 
     constructor(private flowerService: FlowerService, private _fb: FormBuilder) {
         // this.users = this.userListService.getUsers();
@@ -43,6 +44,7 @@ export class FlowerComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        this.incrementLikes();
         this.flowerService.getBedNames().subscribe(
             beds => this.bedNames = Object.keys(beds),
             err => {
@@ -54,6 +56,7 @@ export class FlowerComponent implements OnInit{
             like: [0, [<any>Validators.required]],
             dislike: [0, [<any>Validators.required]],
         });
+
     }
 
     onSelectBed(currentBed: string): void {
@@ -86,9 +89,13 @@ export class FlowerComponent implements OnInit{
 
     postComment(): void{
         this.flowerService.postComment("banana", "this is a cool banana")
-            .subscribe(cool => this.commentSucceed = cool);
+            .subscribe(succeed => this.commentSucceed = succeed);
     }
 
+    incrementLikes(): void {
+        this.flowerService.incrementLikes("16001")
+            .subscribe(succeed => this.incrementSucceed = succeed);
+    }
 }
 
 
