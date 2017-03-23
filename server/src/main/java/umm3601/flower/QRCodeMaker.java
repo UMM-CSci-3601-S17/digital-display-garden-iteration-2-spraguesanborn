@@ -55,7 +55,7 @@ public class QRCodeMaker {
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 
         for (String bed : beds){
-            bedPath = "server/src/main/java/umm3601/QRCodes/" + bed;
+            bedPath = "server/src/main/java/umm3601/flower/QRCodes/" + bed + ".png";
             url = "localhost:9000/" + bed;
 
             createQRCode(url, bedPath, charset, hintMap, 500, 500);

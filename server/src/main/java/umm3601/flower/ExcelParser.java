@@ -62,7 +62,6 @@ public class ExcelParser {
         MongoCollection beds = ddg.getCollection("beds");
         beds.drop();
 
-
         for (int i = 4; i < plants.length; i++){
             String currentBed = plants[i][bedCol];
 
@@ -72,7 +71,6 @@ public class ExcelParser {
                 beds.insertOne(new Document("gardenLocation", currentBed));
             }
         }
-
     }
 
     /*

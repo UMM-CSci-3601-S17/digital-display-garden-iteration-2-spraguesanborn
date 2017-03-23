@@ -2,8 +2,10 @@ package umm3601;
 
 import com.google.zxing.WriterException;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import umm3601.flower.ExcelParser;
 import umm3601.flower.QRCodeMaker;
 import umm3601.user.UserController;
@@ -12,6 +14,7 @@ import umm3601.flower.FlowerController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -27,6 +30,12 @@ public class Server {
         MongoCollection plants = ddg.getCollection("flowers");
         MongoCollection beds = ddg.getCollection("beds");
         List<String> bedNames = new ArrayList<String>();
+
+        FindIterable<Map<String, Object>> bedDoc = beds.find();
+
+        for (Map bed : bedDoc){
+            bedNames.add(bed.get("gardenLocation").toString());
+        }
 
         QRCodeMaker qrCodeMaker = new QRCodeMaker(bedNames);
 
