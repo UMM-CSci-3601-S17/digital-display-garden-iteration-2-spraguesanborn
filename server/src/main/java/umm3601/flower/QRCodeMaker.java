@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -31,20 +32,34 @@ And then modified for our use
  */
 
 public class QRCodeMaker {
+    private static String filePath = "server/src/main/java/umm3601/flower/QRCode.png";
+    private static String qrCodeData = "Hello World!";
+    private static String charset = "UTF-8";
+
     public static void main(String[] args) throws WriterException, IOException,
             NotFoundException {
-        String qrCodeData = "Hello World!";
-        String filePath = "server/src/main/java/umm3601/flower/QRCode.png";
+
+        //DO NOT CHANGE CODE BELOW THIS LINE
         String charset = "UTF-8"; // or "ISO-8859-1"
         Map hintMap = new HashMap();
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        //DO NOT CHANGE CODE ABOVE THIS LINE
 
         createQRCode(qrCodeData, filePath, charset, hintMap, 200, 200);
-        System.out.println("QR Code image created successfully!");
+    }
 
-        System.out.println("Data read from QR Code: "
-                + readQRCode(filePath, charset, hintMap));
+    public QRCodeMaker (List<String> beds) throws WriterException, IOException {
+        String url;
+        String bedPath;
+        Map hintMap = new HashMap();
+        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 
+        for (String bed : beds){
+            bedPath = "server/src/main/java/umm3601/QRCodes/" + bed;
+            url = "localhost:9000/" + bed;
+
+            createQRCode(url, bedPath, charset, hintMap, 500, 500);
+        }
     }
 
     public static void createQRCode(String qrCodeData, String filePath,
