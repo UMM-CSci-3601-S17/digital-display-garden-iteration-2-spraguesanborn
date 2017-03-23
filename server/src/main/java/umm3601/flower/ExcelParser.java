@@ -10,12 +10,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import static java.lang.Math.max;
 import static java.lang.Math.round;
 
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 //import sun.text.normalizer.UTF16;
 
 public class ExcelParser {
@@ -38,7 +42,35 @@ public class ExcelParser {
         String[][] horizontallyCollapsed = collapseHorizontally(arrayRepresentation);
         String[][] verticallyCollapsed = collapseVertically(horizontallyCollapsed);
         replaceNulls(verticallyCollapsed);
+        createBeds(verticallyCollapsed);
         populateDatabase(verticallyCollapsed);
+
+    }
+
+    private static void createBeds(String[][] plants) {
+        String[] keys = getKeys(plants);
+        int bedCol = 1;
+        for (int i = 0; i < keys.length; i++){
+            if (keys[i].equals("gardenLocation")){
+                bedCol = i;
+            }
+        }
+
+        MongoClient mongoClient = new MongoClient();
+        MongoDatabase ddg = mongoClient.getDatabase("ddg");
+        MongoCollection beds = ddg.getCollection("beds");
+        beds.drop();
+
+        List<String> bedList = new ArrayList<String>();
+        for (int i = 4; i < plants.length; i++){
+            String currentBed = plants[i][bedCol];
+
+            Bson filter = new Document("gardenLocation", currentBed);
+
+            if (beds.count(filter) == 0){
+                beds.insertOne(new Document("bedName", currentBed));
+            }
+        }
 
     }
 
