@@ -72,7 +72,6 @@ public class ExcelParser {
             }
         }
     }
-
     /*
     Uses Apache POI to extract information from xlsx file into a 2D array.
     Here is where we got our starter code: http://www.mkyong.com/java/apache-poi-reading-and-writing-excel-file-in-java/
