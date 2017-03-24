@@ -37,4 +37,12 @@ export class FlowerService {
 
         return this.http.put(this.flowerUrl + "/thumbsUp", JSON.stringify(toUpdate)).map(res => res.json());
     }
+
+    incrementVisits(plantID: string): Observable<Boolean> {
+        let toUpdate = {
+            plantID: plantID
+        };
+
+        return this.http.put(this.flowerUrl + "/flowerVisits", JSON.stringify(toUpdate)).map(res => res.json());
+    }
 }

@@ -113,18 +113,13 @@ public class FlowerController {
         return true;
     }
 
+    public boolean incrementVisits(String body){
+        Document filter = new Document();
+        Document parsed = Document.parse(body);
+        filter.append("id", parsed.getString("plantID"));
+        flowerCollection.updateOne(filter, new Document("$inc", new Document("flowerVisits", 1)));
 
+        return true;
+    }
 
-    // Get the average age of all users by company
-//    public String getAverageAgeByCompany() {
-//        AggregateIterable<Document> documents
-//                = userCollection.aggregate(
-//                Arrays.asList(
-//                        Aggregates.group("$company",
-//                                Accumulators.avg("averageAge", "$age")),
-//                        Aggregates.sort(Sorts.ascending("_id"))
-//                ));
-//        System.err.println(JSON.serialize(documents));
-//        return JSON.serialize(documents);
-//    }
 }

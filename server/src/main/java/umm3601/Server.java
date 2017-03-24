@@ -91,6 +91,11 @@ public class Server {
             return flowerController.incrementLikes(req.body());
         });
 
+        put("api/flowers/flowerVisits", (req, res) -> {
+            res.type("application/json");
+            return flowerController.incrementVisits(req.body());
+        });
+
         // Get average ages by company
         get("api/avgUserAgeByCompany", (req, res) -> {
             res.type("application/json");

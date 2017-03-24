@@ -29,6 +29,7 @@ export class FlowerComponent implements OnInit{
     public events: any[] = []; // use later to display form changes
     private commentSucceed: Boolean = false;
     private incrementSucceed: Boolean = false;
+    private visitSucceed: Boolean = false;
 
     constructor(private flowerService: FlowerService, private _fb: FormBuilder) {
         // this.users = this.userListService.getUsers();
@@ -75,6 +76,7 @@ export class FlowerComponent implements OnInit{
                 console.log(err);
             }
         );
+        this.incrementVisits(this.flower.id);
     }
 
     save(model: Feedback, isValid: boolean) {
@@ -92,8 +94,13 @@ export class FlowerComponent implements OnInit{
     }
 
     incrementLikes(): void {
-        this.flowerService.incrementLikes("16001")
+        this.flowerService.incrementLikes(this.flower.id)
             .subscribe(succeed => this.incrementSucceed = succeed);
+    }
+
+    incrementVisits(plantID: string): void {
+        this.flowerService.incrementVisits(plantID)
+            .subscribe(succeed => this.visitSucceed = succeed);
     }
 }
 
