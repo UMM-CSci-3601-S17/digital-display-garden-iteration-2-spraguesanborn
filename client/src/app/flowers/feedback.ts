@@ -8,8 +8,6 @@
 
 
 export interface Feedback {
-    cultivar: string;
-    comment: String[];
-    like: number;
-    dislike: number;
+    plantID: string;
+    comment: string;
 }

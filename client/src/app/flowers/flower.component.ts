@@ -27,6 +27,9 @@ export class FlowerComponent implements OnInit{
     public myForm: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     public events: any[] = []; // use later to display form changes
+    private commentSucceed: Boolean = false;
+    private incrementSucceed: Boolean = false;
+    private visitSucceed: Boolean = false;
     private url: string = this.router.url;
 
     constructor(private flowerService: FlowerService, private _fb: FormBuilder, private router: Router) {
@@ -50,9 +53,8 @@ export class FlowerComponent implements OnInit{
         );
 
         this.myForm = this._fb.group({
-            comment: ['', [<any>Validators.required]],
-            like: [0, [<any>Validators.required]],
-            dislike: [0, [<any>Validators.required]],
+            plantID: ['', [<any>Validators.required]],
+            comment: ['', [<any>Validators.required]]
         });
 
         if (this.url.length > 1) {
@@ -79,16 +81,32 @@ export class FlowerComponent implements OnInit{
                 console.log(err);
             }
         );
+        this.incrementVisits(this.flower.id);
     }
 
     save(model: Feedback, isValid: boolean) {
         this.submitted = true; // set form submit to true
-
+        this.flowerService.postComment(this.flower.id, model.comment)
+            .subscribe(succeed => this.commentSucceed = succeed);
         // check if model is valid
-        // if valid, call API to save customer
+        // if valid, call API to savse customer
         console.log(model, isValid);
     }
 
+    postComment(): void{
+        this.flowerService.postComment("banana", "this is a cool banana")
+            .subscribe(succeed => this.commentSucceed = succeed);
+    }
+
+    incrementLikes(): void {
+        this.flowerService.incrementLikes(this.flower.id)
+            .subscribe(succeed => this.incrementSucceed = succeed);
+    }
+
+    incrementVisits(plantID: string): void {
+        this.flowerService.incrementVisits(plantID)
+            .subscribe(succeed => this.visitSucceed = succeed);
+    }
 }
 
 

@@ -51,13 +51,15 @@
     <h2 class="cultivar-font">{{ flower.cultivar }}</h2>
     <h4 class="flower-info-font">Common name: {{ flower.commonName }}</h4>
     <h4 class="flower-info-font">Source: {{ flower.source }}</h4>
+    <h4 class="flower-info-font">Visits: {{ flower.flowerVisits }}</h4>
+    <h4 class="flower-info-font">Likes: {{ flower.thumbsUp }}</h4>
 </div>
 
 
 <!--like & dislike buttons-->
 <p class="our-font">Do you like this flower?</p>
 <div class = "btn-group btn-group-justified">
-    <a class="btn btn-default btn-color">
+    <a class="btn btn-default btn-color" (click)="incrementLikes()">
         <span class="glyphicon glyphicon-thumbs-up"></span>
     </a>
     <a class="btn btn-default btn-color">
@@ -94,6 +96,8 @@
         <button class="submitButton btn btn-color our-font" type="submit">Submit</button>
     </form>
 </div>
+
+<button (click)="postComment()">post!!</button>
 
 
 <!--Visitor's thoughts-->

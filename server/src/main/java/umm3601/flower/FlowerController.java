@@ -19,6 +19,7 @@ import static com.mongodb.client.model.Filters.eq;
 public class FlowerController {
 
     private final MongoCollection<Document> flowerCollection;
+    private final MongoCollection<Document> commentCollection;
 
     public FlowerController(String dbName) throws IOException {
         // Set up our server address
@@ -33,6 +34,7 @@ public class FlowerController {
         MongoDatabase db = mongoClient.getDatabase(dbName);
 
         flowerCollection = db.getCollection("flowers");
+        commentCollection = db.getCollection("comments");
     }
 
     // List flowers
@@ -91,18 +93,33 @@ public class FlowerController {
         return output.toJson();
     }
 
+    public boolean postComment(String body){
+        Document insert = new Document();
+        Document parsed = Document.parse(body);
+        insert.append("plantID", parsed.getString("plantID"));
+        insert.append("comment", parsed.getString("comment"));
 
+        commentCollection.insertOne(insert);
 
-    // Get the average age of all users by company
-//    public String getAverageAgeByCompany() {
-//        AggregateIterable<Document> documents
-//                = userCollection.aggregate(
-//                Arrays.asList(
-//                        Aggregates.group("$company",
-//                                Accumulators.avg("averageAge", "$age")),
-//                        Aggregates.sort(Sorts.ascending("_id"))
-//                ));
-//        System.err.println(JSON.serialize(documents));
-//        return JSON.serialize(documents);
-//    }
+        return true;
+    }
+
+    public boolean incrementLikes(String body){
+        Document filter = new Document();
+        Document parsed = Document.parse(body);
+        filter.append("id", parsed.getString("plantID"));
+        flowerCollection.updateOne(filter, new Document("$inc", new Document("thumbsUp", 1)));
+
+        return true;
+    }
+
+    public boolean incrementVisits(String body){
+        Document filter = new Document();
+        Document parsed = Document.parse(body);
+        filter.append("id", parsed.getString("plantID"));
+        flowerCollection.updateOne(filter, new Document("$inc", new Document("flowerVisits", 1)));
+
+        return true;
+    }
+
 }

@@ -21,5 +21,28 @@ export class FlowerService {
         return this.http.request(this.bedUrl).map(res => res.json());
     }
 
+    postComment(plantID: string, comment: string): Observable<Boolean> {
+        let toInsert = {
+            plantID: plantID,
+            comment: comment
+        };
 
+        return this.http.post(this.flowerUrl + "/postComment", JSON.stringify(toInsert)).map(res => res.json());
+    }
+
+    incrementLikes(plantID: string): Observable<Boolean> {
+        let toUpdate = {
+            plantID: plantID
+        };
+
+        return this.http.put(this.flowerUrl + "/thumbsUp", JSON.stringify(toUpdate)).map(res => res.json());
+    }
+
+    incrementVisits(plantID: string): Observable<Boolean> {
+        let toUpdate = {
+            plantID: plantID
+        };
+
+        return this.http.put(this.flowerUrl + "/flowerVisits", JSON.stringify(toUpdate)).map(res => res.json());
+    }
 }

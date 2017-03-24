@@ -7,4 +7,5 @@ public class Flower {
     String source;
     String gardenLocation;
     int year;
+    int thumbsUp = 0;
 }
