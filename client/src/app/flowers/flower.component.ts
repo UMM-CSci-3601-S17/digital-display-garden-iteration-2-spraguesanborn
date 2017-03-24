@@ -3,7 +3,7 @@ import { Flower } from "./flower";
 import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Feedback } from './feedback';
-
+import { Router, NavigationStart, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -27,9 +27,9 @@ export class FlowerComponent implements OnInit{
     public myForm: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     public events: any[] = []; // use later to display form changes
+    private url: string = this.router.url;
 
-    constructor(private flowerService: FlowerService, private _fb: FormBuilder) {
-        // this.users = this.userListService.getUsers();
+    constructor(private flowerService: FlowerService, private _fb: FormBuilder, private router: Router) {
     }
 
     private parseFlowers(flowers: Flower[]) {

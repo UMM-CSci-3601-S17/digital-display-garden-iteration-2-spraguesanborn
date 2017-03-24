@@ -11,6 +11,7 @@ import { HomeService } from './app/home/home.service';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
+import { RouterModule } from '@angular/router'
 import { PipeModule } from './pipe.module';
 import {FlowerComponent} from "./app/flowers/flower.component";
 import { FlowerService } from './app/flowers/flower.service';
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         FormsModule,
         PipeModule,
         ReactiveFormsModule,
+        RouterModule
     ],
     declarations: [
         AppComponent,
