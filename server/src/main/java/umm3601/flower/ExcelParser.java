@@ -23,7 +23,7 @@ import org.bson.conversions.Bson;
 //import sun.text.normalizer.UTF16;
 
 public class ExcelParser {
-    public static String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
+    public static String FILE_NAME = "/home/sanox013/IdeaProjects/digital-display-garden-iteration-2-spraguesanborn/server/src/main/java/umm3601/flower/AccessionList2016.xlsx";
 
     public static void main(String[] args) {
         parseExcel();
