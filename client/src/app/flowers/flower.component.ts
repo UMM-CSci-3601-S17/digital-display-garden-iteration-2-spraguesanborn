@@ -44,7 +44,6 @@ export class FlowerComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.incrementLikes();
         this.flowerService.getBedNames().subscribe(
             beds => this.bedNames = Object.keys(beds),
             err => {
@@ -52,9 +51,8 @@ export class FlowerComponent implements OnInit{
             }
         );
         this.myForm = this._fb.group({
-            comment: ['', [<any>Validators.required]],
-            like: [0, [<any>Validators.required]],
-            dislike: [0, [<any>Validators.required]],
+            plantID: ['', [<any>Validators.required]],
+            comment: ['', [<any>Validators.required]]
         });
 
     }
@@ -81,7 +79,8 @@ export class FlowerComponent implements OnInit{
 
     save(model: Feedback, isValid: boolean) {
         this.submitted = true; // set form submit to true
-
+        this.flowerService.postComment(this.flower.id, model.comment)
+            .subscribe(succeed => this.commentSucceed = succeed);
         // check if model is valid
         // if valid, call API to savse customer
         console.log(model, isValid);
