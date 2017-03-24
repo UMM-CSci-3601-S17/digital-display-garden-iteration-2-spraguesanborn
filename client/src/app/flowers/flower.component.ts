@@ -48,11 +48,17 @@ export class FlowerComponent implements OnInit{
                 console.log(err);
             }
         );
+
         this.myForm = this._fb.group({
             comment: ['', [<any>Validators.required]],
             like: [0, [<any>Validators.required]],
             dislike: [0, [<any>Validators.required]],
         });
+
+        if (this.url.length > 1) {
+            this.currentBed = this.url.substr(1);
+            this.onSelectBed(this.currentBed);
+        }
     }
 
     onSelectBed(currentBed: string): void {
