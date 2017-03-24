@@ -3,7 +3,7 @@ import { Flower } from "./flower";
 import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Feedback } from './feedback';
-
+import { Router, NavigationStart, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -30,9 +30,9 @@ export class FlowerComponent implements OnInit{
     private commentSucceed: Boolean = false;
     private incrementSucceed: Boolean = false;
     private visitSucceed: Boolean = false;
+    private url: string = this.router.url;
 
-    constructor(private flowerService: FlowerService, private _fb: FormBuilder) {
-        // this.users = this.userListService.getUsers();
+    constructor(private flowerService: FlowerService, private _fb: FormBuilder, private router: Router) {
     }
 
     private parseFlowers(flowers: Flower[]) {
@@ -51,11 +51,16 @@ export class FlowerComponent implements OnInit{
                 console.log(err);
             }
         );
+
         this.myForm = this._fb.group({
             plantID: ['', [<any>Validators.required]],
             comment: ['', [<any>Validators.required]]
         });
 
+        if (this.url.length > 1) {
+            this.currentBed = this.url.substr(1);
+            this.onSelectBed(this.currentBed);
+        }
     }
 
     onSelectBed(currentBed: string): void {

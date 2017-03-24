@@ -1,7 +1,7 @@
 ## UMM CSci Production Template
 #### Based on Lab #4
 
-[![Build Status](https://travis-ci.org/UMM-CSci-3601-S17/digital-display-garden-iteration-1-tony-ai-rj.svg?branch=dev-2)](https://travis-ci.org/UMM-CSci-3601-S17/digital-display-garden-iteration-1-tony-ai-rj)
+[![Build Status](https://travis-ci.org/UMM-CSci-3601-S17/digital-display-garden-iteration-2-spraguesanborn.svg)](https://travis-ci.org/UMM-CSci-3601-S17/digital-display-garden-iteration-2-spraguesanborn)
 
 This is a modification of Lab #4 which includes a slightly different
 gradle configuration
