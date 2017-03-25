@@ -5,7 +5,7 @@
 <div class="username-password-box">
     <input #user placeholder="User"> <br> <br>
     <input #pass placeholder="Password"> <br> <br> <br>
-    <button (click)="setUserPass(user.value, pass.value)">Login</button>
+    <button (click)="setUserPass(user.value, pass.value)" class="submitButton btn btn-color our-font">Login</button>
 </div>
 
 <div><br><br></div>
@@ -24,7 +24,7 @@
 
 <style>
     .admin-header {
-        background-color: #006600;
+        background-color: rgb(0, 77, 0);
         text-align: center;
         font-family: "Open Sans";
         color: white;
@@ -33,6 +33,13 @@
     }
     .username-password-box {
         margin: auto;
-        width: 15%;
+        width: ;
+    }
+    .our-font {
+        font-family: 'Open Sans';
+    }
+    .btn-color {
+        background-color: rgb(0, 77, 0);
+        color: white;
     }
 </style>
