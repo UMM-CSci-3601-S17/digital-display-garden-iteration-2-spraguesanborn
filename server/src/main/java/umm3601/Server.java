@@ -11,7 +11,9 @@ import umm3601.flower.QRCodeMaker;
 import umm3601.user.UserController;
 import umm3601.flower.FlowerController;
 
+import javax.servlet.MultipartConfigElement;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +122,14 @@ public class Server {
         put("api/flowers/flowerVisits", (req, res) -> {
             res.type("application/json");
             return flowerController.incrementVisits(req.body());
+        });
+
+        post("api/newFile", (request, response) -> {
+            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+            try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
+                flowerController.uploadFile(is);
+            }
+            return "File uploaded";
         });
 
         // Get average ages by company
