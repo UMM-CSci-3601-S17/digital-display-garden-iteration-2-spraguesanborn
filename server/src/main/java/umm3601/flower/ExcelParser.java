@@ -6,21 +6,21 @@ import com.mongodb.client.MongoDatabase;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import static java.lang.Math.max;
-import static java.lang.Math.round;
 
-import org.bson.BsonDocument;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-//import sun.text.normalizer.UTF16;
 
 public class ExcelParser {
     public static String FILE_NAME = "/AccessionList2016.xlsx";
+    public static Object objectO = new Object();
+    public static InputStream excelFile;
 
     public static void main(String[] args) {
         parseExcel();
@@ -30,7 +30,18 @@ public class ExcelParser {
         if (testing){
             FILE_NAME = "/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
         }
+        excelFile = objectO.getClass().getResourceAsStream(FILE_NAME);
     }
+
+    public ExcelParser(File file){
+        String fileName = file.getPath();
+        excelFile = objectO.getClass().getResourceAsStream(fileName);
+    }
+
+    public ExcelParser(InputStream file){
+        excelFile = file;
+    }
+
 
     public static void parseExcel() {
 
@@ -78,8 +89,6 @@ public class ExcelParser {
      */
     public static String[][] extractFromXLSX() {
         try {
-            Object objectO = new Object();
-            InputStream excelFile = objectO.getClass().getResourceAsStream(FILE_NAME);
 
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
