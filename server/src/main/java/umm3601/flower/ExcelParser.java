@@ -67,7 +67,7 @@ public class ExcelParser {
             if (beds.count(filter) == 0 && !currentBed.equals("")) {
                 beds.insertOne(new Document("gardenLocation", currentBed));
             }
-        }java/umm3601/flower
+        }
     }
     /*
     Uses Apache POI to extract information from xlsx file into a 2D array.
@@ -226,7 +226,7 @@ public class ExcelParser {
             }
 
             Document doc = new Document();
-            docjava/umm3601/flower.putAll(map);
+            doc.putAll(map);
             doc.append("thumbsUp", 0);
             doc.append("flowerVisits", 0);
             plants.insertOne(doc);
