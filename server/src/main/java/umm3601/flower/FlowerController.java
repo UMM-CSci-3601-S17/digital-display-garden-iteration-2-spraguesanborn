@@ -9,7 +9,9 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
@@ -96,10 +98,8 @@ public class FlowerController {
     public boolean postComment(String body){
         Document insert = new Document();
         Document parsed = Document.parse(body);
-        insert.append("plantID", parsed.getString("plantID"));
-        insert.append("comment", parsed.getString("comment"));
 
-        commentCollection.insertOne(insert);
+        commentCollection.insertOne(parsed);
 
         return true;
     }
@@ -118,6 +118,15 @@ public class FlowerController {
         Document parsed = Document.parse(body);
         filter.append("id", parsed.getString("plantID"));
         flowerCollection.updateOne(filter, new Document("$inc", new Document("flowerVisits", 1)));
+
+        return true;
+    }
+
+
+
+    public boolean uploadFile(InputStream file){
+        ExcelParser excelParser = new ExcelParser(file);
+        excelParser.parseExcel();
 
         return true;
     }
