@@ -5,10 +5,10 @@ import { Component, OnInit } from '@angular/core';
 import { FlowerService } from "../flowers/flower.service";
 
 @Component({
-    selector: 'administration-component',
-    templateUrl: 'administration.component.html'
+    selector: 'admin-component',
+    templateUrl: 'admin.component.html'
 })
-export class AdministrationComponent{
+export class AdminComponent{
 
 
     username: string;
