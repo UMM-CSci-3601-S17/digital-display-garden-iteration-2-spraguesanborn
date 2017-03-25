@@ -1,0 +1,17 @@
+<input #user placeholder="User">
+<input #pass placeholder="Password"> <br> <br>
+<button (click)="setUserPass(user.value, pass.value)">Login</button>
+
+<div><br><br></div>
+
+<div *ngIf="username && password">
+    <h3>Upload CSV</h3>
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file">
+    <div><br><br></div>
+    <hr>
+</div>
+
+<div *ngIf="showConfirmation">
+    <h3><span class="label label-success">CSV Uploaded Successfully</span></h3>
+
+</div>

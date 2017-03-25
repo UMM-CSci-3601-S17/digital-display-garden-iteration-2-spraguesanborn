@@ -17,6 +17,9 @@ import {FlowerComponent} from "./app/flowers/flower.component";
 import { FlowerService } from './app/flowers/flower.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { AdminComponent } from './app/admin/admin.component';
+import { AdminService } from './app/admin/admin.service';
+
 
 
 @NgModule({
@@ -36,8 +39,14 @@ import { ReactiveFormsModule } from '@angular/forms';
         NavbarComponent,
         UserListComponent,
         FlowerComponent,
+        AdminComponent
     ],
-    providers: [ UserListService, HomeService, FlowerService ],
+    providers: [
+        UserListService,
+        HomeService,
+        FlowerService,
+        AdminService
+    ],
     bootstrap: [ AppComponent ]
 })
 
