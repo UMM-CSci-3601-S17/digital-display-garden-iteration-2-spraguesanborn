@@ -1,6 +1,12 @@
-<input #user placeholder="User">
-<input #pass placeholder="Password"> <br> <br>
-<button (click)="setUserPass(user.value, pass.value)">Login</button>
+<div>
+    <h1 class="admin-header">WCROC Admin</h1>
+</div>
+
+<div class="username-password-box">
+    <input #user placeholder="User"> <br> <br>
+    <input #pass placeholder="Password"> <br> <br> <br>
+    <button (click)="setUserPass(user.value, pass.value)">Login</button>
+</div>
 
 <div><br><br></div>
 
@@ -15,3 +21,18 @@
     <h3><span class="label label-success">CSV Uploaded Successfully</span></h3>
 
 </div>
+
+<style>
+    .admin-header {
+        background-color: #006600;
+        text-align: center;
+        font-family: "Open Sans";
+        color: white;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+    .username-password-box {
+        margin: auto;
+        width: 15%;
+    }
+</style>

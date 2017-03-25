@@ -5,13 +5,13 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class AdminService {
-    private plantUrl: string = API_URL + "plants";
+    private plantUrl: string = API_URL + "newFile";
     constructor(private http:Http) { }
 
     uploadFile(event): void{
         console.log("Uploading file");
         let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
+        if (fileList.length > 0) {
             let file: File = fileList[0];
             let formData:FormData = new FormData();
             formData.append('uploadFile', file, file.name);
