@@ -93,14 +93,10 @@ export class FlowerComponent implements OnInit{
         console.log(model, isValid);
     }
 
-    postComment(): void{
-        this.flowerService.postComment("banana", "this is a cool banana")
-            .subscribe(succeed => this.commentSucceed = succeed);
-    }
-
     incrementLikes(): void {
         this.flowerService.incrementLikes(this.flower.id)
             .subscribe(succeed => this.incrementSucceed = succeed);
+
     }
 
     incrementVisits(plantID: string): void {

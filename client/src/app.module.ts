@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminComponent } from './app/admin/admin.component';
 import { AdminService } from './app/admin/admin.service';
+import { FileUploadComponent } from './app/admin/FileUpload';
 
 
 
@@ -39,7 +40,8 @@ import { AdminService } from './app/admin/admin.service';
         NavbarComponent,
         UserListComponent,
         FlowerComponent,
-        AdminComponent
+        AdminComponent,
+        FileUploadComponent
     ],
     providers: [
         UserListService,
