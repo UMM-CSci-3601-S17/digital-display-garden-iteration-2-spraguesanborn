@@ -32,7 +32,7 @@ And then modified for our use
  */
 
 public class QRCodeMaker {
-    private static String filePath = "server/src/main/java/umm3601/flower/QRCode.png";
+    private static String filePath = "server/src/main/resources/QRCode.png";
     private static String qrCodeData = "Hello World!";
     private static String charset = "UTF-8";
 
@@ -55,7 +55,7 @@ public class QRCodeMaker {
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 
         for (String bed : beds){
-            bedPath = "server/src/main/java/umm3601/flower/QRCodes/" + bed + ".png";
+            bedPath = "server/src/main/resources/QRCodes/" + bed + ".png";
             url = "localhost:9000/" + bed;
 
             createQRCode(url, bedPath, charset, hintMap, 500, 500);

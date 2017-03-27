@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -129,6 +130,20 @@ public class FlowerControllerSpec
         String jsonResult = flowerController.getFlower(roseIdString);
         Document rose = Document.parse(jsonResult);
         assertEquals("Name should match", "rose", rose.get("commonName"));
+    }
+
+    @Test
+    public void testUploadFile() {
+        String filePath = "/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
+        Object object = new Object();
+        InputStream excelFile = object.getClass().getResourceAsStream(filePath);
+
+        flowerController.uploadFile(excelFile);
+
+        MongoClient mongoClient = new MongoClient();
+        MongoDatabase ddg = mongoClient.getDatabase("ddg");
+        MongoCollection flowers = ddg.getCollection("flowers");
+        assertEquals(1664, flowers.count());
     }
 }
 
