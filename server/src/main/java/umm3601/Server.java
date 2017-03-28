@@ -5,6 +5,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
 import org.bson.Document;
 import umm3601.flower.ExcelParser;
 import umm3601.flower.QRCodeMaker;
@@ -12,6 +13,7 @@ import umm3601.user.UserController;
 import umm3601.flower.FlowerController;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,6 +24,9 @@ import static spark.Spark.*;
 
 
 public class Server {
+
+    private static String excelTempDir = "/tmp/digital-display-garden";
+
     public static void main(String[] args) throws IOException, WriterException {
 
         ExcelParser excelParser = new ExcelParser(false);
@@ -39,7 +44,8 @@ public class Server {
             bedNames.add(bed.get("gardenLocation").toString());
         }
 
-        QRCodeMaker qrCodeMaker = new QRCodeMaker(bedNames);
+
+        //QRCodeMaker qrCodeMaker = new QRCodeMaker(bedNames);
 
 
 
@@ -63,7 +69,7 @@ public class Server {
             if (accessControlRequestMethod != null) {
                 response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
             }
- 
+
             return "OK";
         });
 
@@ -75,6 +81,7 @@ public class Server {
         // Redirects for the "home" page
         redirect.get("", "/");
         redirect.get("/", "http://localhost:9000");
+        redirect.get("/admin", "http://localhost:9000/admin");
 
         // List users
         get("api/users", (req, res) -> {
@@ -117,7 +124,31 @@ public class Server {
         put("api/flowers/thumbsUp", (req, res) -> {
             res.type("application/json");
             return flowerController.incrementLikes(req.body());
-        });
+        });post("api/newFile", (req, res) -> {
+                System.out.println("We got here");
+                res.type("application/json");
+                try {
+
+                    MultipartConfigElement multipartConfigElement = new MultipartConfigElement(excelTempDir);
+                    req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+
+                    String fileName = Long.valueOf(System.currentTimeMillis()).toString();
+                    Part part = req.raw().getPart("file[]");
+
+                    ExcelParser parser = new ExcelParser(part.getInputStream());
+
+
+                    parser.parseExcel();
+
+                    return JSON.serialize("File Uploaded");
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+
+            });
 
         put("api/flowers/flowerVisits", (req, res) -> {
             res.type("application/json");
@@ -131,11 +162,62 @@ public class Server {
             }
             return "File uploaded";
         });
+post("api/newFile", (req, res) -> {
+                System.out.println("We got here");
+                res.type("application/json");
+                try {
 
+                    MultipartConfigElement multipartConfigElement = new MultipartConfigElement(excelTempDir);
+                    req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+
+                    String fileName = Long.valueOf(System.currentTimeMillis()).toString();
+                    Part part = req.raw().getPart("file[]");
+
+                    ExcelParser parser = new ExcelParser(part.getInputStream());
+
+
+                    parser.parseExcel();
+
+                    return JSON.serialize("File Uploaded");
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+
+            });
         // Get average ages by company
         get("api/avgUserAgeByCompany", (req, res) -> {
             res.type("application/json");
             return userController.getAverageAgeByCompany();
+        });
+
+        // Accept an xls file
+        post("api/newFile", (req, res) -> {
+            System.out.println("We got here");
+            res.type("application/json");
+            try {
+
+                MultipartConfigElement multipartConfigElement = new MultipartConfigElement(excelTempDir);
+                req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
+
+                String fileName = Long.valueOf(System.currentTimeMillis()).toString();
+                Part part = req.raw().getPart("file[]");
+
+                ExcelParser parser = new ExcelParser(part.getInputStream());
+
+
+                parser.parseExcel();
+
+                return JSON.serialize("File Uploaded");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+
         });
 
         // Handle "404" file not found requests:
@@ -144,6 +226,8 @@ public class Server {
             res.status(404);
             return "Sorry, we couldn't find that!";
         });
+
+
 
     }
 
