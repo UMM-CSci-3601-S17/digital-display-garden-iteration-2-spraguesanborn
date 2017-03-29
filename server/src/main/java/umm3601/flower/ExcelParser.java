@@ -75,8 +75,11 @@ public class ExcelParser {
 
             Bson filter = new Document("gardenLocation", currentBed);
 
+
             if (beds.count(filter) == 0 && !currentBed.equals("")) {
-                beds.insertOne(new Document("gardenLocation", currentBed));
+                Document doc = new Document("gardenLocation", currentBed);
+
+                beds.insertOne(doc);
             }
         }
     }

@@ -20,15 +20,13 @@ export class FileUploadComponent {
             for (let i = 0; i < fileCount; i++) {
                 formData.append('file[]', inputEl.files.item(i));
             }
-            this.http
-                .post('http://localhost:4567/api/newFile', formData)
+            this.http.post(API_URL + 'newFile', formData)
             // do whatever you do...
             // subscribe to observable to listen for response
-                .catch(error => Observable.throw(error))
-                                .subscribe(
-                                    data => console.log('success'),
-                                    error => console.log(error)
-                                )
+                .subscribe(
+                    data => console.log('success'),
+                    error => console.log(error)
+                )
         }
     }
 }
