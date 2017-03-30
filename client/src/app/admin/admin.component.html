@@ -1,18 +1,15 @@
+<!--
 <div>
-    <h1 class="admin-header">WCROC Admin</h1>
-</div>
-
-<div class="username-password-box">
-    <input #user placeholder="User"> <br> <br>
-    <input #pass placeholder="Password"> <br> <br> <br>
-    <button (click)="setUserPass(user.value, pass.value)" class="submitButton btn btn-color our-font">Login</button>
+    <input #user placeholder="User"> <br>
+    <input #pass placeholder="Password"> <br> <br>
+    <button (click)="setUserPass(user.value, pass.value)">Login</button>
 </div>
 
 <div><br><br></div>
 
 <div *ngIf="username && password">
     <h3>Upload CSV</h3>
-    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.xlsx">
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file">
     <div><br><br></div>
     <hr>
 </div>
@@ -21,25 +18,152 @@
     <h3><span class="label label-success">CSV Uploaded Successfully</span></h3>
 
 </div>
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<header class="header-background container">
+    <h1>
+        <span class="header-wcroc">West Central Research and Outreach Center (WCROC)</span>
+        <br>
+        <span class="header-admin">Admin</span>
+    </h1>
+</header>
+
+<div class="upload-container">
+    <h1 class="upload-font">Upload File</h1>
+    <!--<input type="file" (change)="fileChange($event)" accept=".xlsx" placeholder="Upload file">-->
+    <file-upload #fu (change)="fu.upload()" [multiple]="true"></file-upload>
+</div>
+
+<div *ngIf="showConfirmation" class="container">
+    <h3 class="success">File Uploaded Successfully</h3>
+</div>
+
+</body>
 
 <style>
-    .admin-header {
-        background-color: rgb(0, 77, 0);
-        text-align: center;
-        font-family: "Open Sans";
+    /* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+      License: none (public domain)
+    */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /*Background*/
+    .header-background {
+        background-color: #192819;
+        padding: 1em 0;
+        margin-bottom: 2.5em;
+        line-height: 1.75em;
+    }
+    .grey-containter {
+        padding: 1.5em;
+        margin-left: 10.5em;
+        margin-right: 10.5em;
+        margin-bottom: 2em;
+        background-color: #f2f2f2;
+        border: 0.01em solid #d9d9d9;
+        border-radius: 0.4em;
+        width: 30em;
+    }
+    .upload-container {
+        padding: 1.5em;
+        margin-left: 10.5em;
+        margin-right: 10.5em;
+        margin-bottom: 2em;
+        border: 0.01em solid #d9d9d9;
+        border-radius: 0.4em;
+        width: 30em;
+    }
+
+    /*Fonts*/
+    .header-wcroc {
+        font-family: Georgia, serif;
         color: white;
-        padding-top: 2%;
-        padding-bottom: 2%;
+        font-size: x-large;
     }
-    .username-password-box {
-        margin: auto;
-        width: ;
+    .header-admin {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #cbe368;
+        font-size: large;
+        font-weight: lighter;
     }
-    .our-font {
-        font-family: 'Open Sans';
+    .login-font {
+        font-family: Arial, Helvetica, sans-serif;
+        color:  #4d4d4d;
+        font-weight: lighter;
+        font-size: xx-large;
+        margin-bottom: 0.75em;
     }
-    .btn-color {
-        background-color: rgb(0, 77, 0);
+    .id-password {
+        font-family: Arial, Helvetica, sans-serif;
+        color:  #4d4d4d;
+        font-weight: bolder;
+        font-size: medium;
+        text-transform: uppercase;
+        margin-bottom: 1.5em;
+    }
+    .upload-font {
+        font-family: Arial, Helvetica, sans-serif;
+        color:  #4d4d4d;
+        font-weight: lighter;
+        font-size: large;
+        margin-bottom: 0.75em;
+    }
+    p {
+        margin-bottom: 0.1em;
+    }
+    .container {
+        padding-left: 12em;
+        padding-right: 12em;
+    }
+    .input-login {
+        width: 100%;
+        padding: 1em 1em;
+        margin: 0.25em 0;
+        border: 0.01em solid #d9d9d9;
+        border-radius: 0.4em;
+        box-sizing: border-box;
+
+    }
+    .btn {
+        background-color: #4d4d4d;
         color: white;
+        width: 5em;
+        padding: 0.75em 0.5em;
+        margin: 0.25em 0;
+        border: 0.01em solid #d9d9d9;
+        border-radius: 0.4em;
+        box-sizing: border-box;
+        font-size: medium;
+    }
+    .success {
+        font-family: Arial, Helvetica, sans-serif;
+        color:  #c0047b;
+        font-weight: lighter;
+        font-size: medium;
+        font-weight: bolder;
     }
 </style>
+</html>

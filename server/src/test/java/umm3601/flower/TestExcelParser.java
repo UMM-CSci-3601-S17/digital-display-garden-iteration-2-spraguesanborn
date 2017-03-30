@@ -85,8 +85,6 @@ public class TestExcelParser {
         assertEquals(16, plants.count(eq("Sort", "104")));
     }
 
-
-
     private static void printDoubleArray(String[][] input){
         for(int i = 0; i < input.length; i++){
             if (!(input[i] == (null))) {

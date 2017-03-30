@@ -2,10 +2,9 @@ package umm3601.flower;
 
 import javax.imageio.ImageIO;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +24,12 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.gridfs.GridFS;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /*
 Original code taken from http://javapapers.com/core-java/java-qr-code/
@@ -32,21 +37,23 @@ And then modified for our use
  */
 
 public class QRCodeMaker {
-    private static String filePath = "server/src/main/resources/QRCode.png";
-    private static String qrCodeData = "Hello World!";
+//    private static String filePath = "server/src/main/resources/QRCode.png";
+//    private static String qrCodeData = "Hello World!";
     private static String charset = "UTF-8";
 
-    public static void main(String[] args) throws WriterException, IOException,
-            NotFoundException {
+    public final static String imageDirectoryPath = "QRCodes/";
 
-        //DO NOT CHANGE CODE BELOW THIS LINE
-        String charset = "UTF-8"; // or "ISO-8859-1"
-        Map hintMap = new HashMap();
-        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-        //DO NOT CHANGE CODE ABOVE THIS LINE
-
-        createQRCode(qrCodeData, filePath, charset, hintMap, 200, 200);
-    }
+//    public static void main(String[] args) throws WriterException, IOException,
+//            NotFoundException {
+//
+//        //DO NOT CHANGE CODE BELOW THIS LINE
+//        String charset = "UTF-8"; // or "ISO-8859-1"
+//        Map hintMap = new HashMap();
+//        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+//        //DO NOT CHANGE CODE ABOVE THIS LINE
+//
+//        createQRCode(qrCodeData, filePath, charset, hintMap, 200, 200);
+//    }
 
     public QRCodeMaker (List<String> beds) throws WriterException, IOException {
         String url;
@@ -54,8 +61,19 @@ public class QRCodeMaker {
         Map hintMap = new HashMap();
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 
+        System.out.println(System.getProperty("user.dir"));
+
+        System.out.println("About to create the directory");
+
+        File imageDirectory = new File(imageDirectoryPath);
+        imageDirectory.delete();
+        imageDirectory.mkdir();
+
+        System.out.println("Made the directory: " + imageDirectoryPath);
+
         for (String bed : beds){
-            bedPath = "server/src/main/resources/QRCodes/" + bed + ".png";
+            bedPath = imageDirectoryPath + bed + ".jpg";
+
             url = "localhost:9000/" + bed;
 
             createQRCode(url, bedPath, charset, hintMap, 500, 500);
@@ -68,8 +86,13 @@ public class QRCodeMaker {
         BitMatrix matrix = new MultiFormatWriter().encode(
                 new String(qrCodeData.getBytes(charset), charset),
                 BarcodeFormat.QR_CODE, qrCodewidth, qrCodeheight, hintMap);
+
+        Object object = new Object();
+
         MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
                 .lastIndexOf('.') + 1), new File(filePath));
+
+
     }
 
     public static String readQRCode(String filePath, String charset, Map hintMap)

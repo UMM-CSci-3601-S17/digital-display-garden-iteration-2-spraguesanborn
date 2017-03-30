@@ -3,7 +3,7 @@ import { Flower } from "./flower";
 import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Feedback } from './feedback';
-import { Router, NavigationStart, RouterModule } from '@angular/router';
+import { Router, NavigationStart, RouterModule, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -93,14 +93,10 @@ export class FlowerComponent implements OnInit{
         console.log(model, isValid);
     }
 
-    postComment(): void{
-        this.flowerService.postComment("banana", "this is a cool banana")
-            .subscribe(succeed => this.commentSucceed = succeed);
-    }
-
     incrementLikes(): void {
         this.flowerService.incrementLikes(this.flower.id)
             .subscribe(succeed => this.incrementSucceed = succeed);
+
     }
 
     incrementVisits(plantID: string): void {

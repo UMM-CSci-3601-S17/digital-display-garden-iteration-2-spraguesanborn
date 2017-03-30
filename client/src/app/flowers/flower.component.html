@@ -62,11 +62,13 @@
     <a class="btn btn-default btn-color" (click)="incrementLikes()">
         <span class="glyphicon glyphicon-thumbs-up"></span>
     </a>
-    <a class="btn btn-default btn-color">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-    </a>
 </div>
 <br>
+
+<div>
+    <h1>ADMIN LINK BELOW</h1>
+    <button [routerLink]="['/admin']">Admin</button>
+</div>
 <!--
 <div class = "responseButtonDiv">
     <button class="responseButton" (click)="clicked($event)">
@@ -96,16 +98,6 @@
         <button class="submitButton btn btn-color our-font" type="submit">Submit</button>
     </form>
 </div>
-
-<button (click)="postComment()">post!!</button>
-
-
-<!--Visitor's thoughts-->
-<!--
-<hr class = "flowerPageHR">
-<h3>Other Visitor's Thoughts</h3>
-<hr class = "flowerPageHR">
--->
 
 <!--Styles-->
 <link href='//fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
