@@ -57,7 +57,7 @@
 
 
 <!--like & dislike buttons-->
-<div>
+<div *ngIf="!incrementSucceed">
     <p class="our-font">Do you like this flower?</p>
     <a class="btn btn-default btn-color btn-size" (click)="incrementLikes()">
         <span class="glyphicon glyphicon-thumbs-up"></span>
