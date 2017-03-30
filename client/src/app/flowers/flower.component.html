@@ -57,11 +57,16 @@
 
 
 <!--like & dislike buttons-->
-<div>
+<div *ngIf="!incrementSucceed">
     <p class="our-font">Do you like this flower?</p>
     <a class="btn btn-default btn-color btn-size" (click)="incrementLikes()">
         <span class="glyphicon glyphicon-thumbs-up"></span>
     </a>
+</div>
+<br>
+
+<div *ngIf="incrementSucceed">
+    <p class="our-font pink-font">Thank you for your like!</p>
 </div>
 <br>
 
@@ -81,7 +86,7 @@
 </div>
 
 <div *ngIf="submitted">
-    <p class="our-font">Thank you for your comment!</p>
+    <p class="our-font pink-font">Thank you for your comment!</p>
 </div>
 
 <!--Styles-->
@@ -98,6 +103,9 @@
     }
     .white-font {
         color: white;
+    }
+    .pink-font {
+        color: #c0047b;
     }
     .btn-color {
         background-color: rgb(0, 77, 0);
