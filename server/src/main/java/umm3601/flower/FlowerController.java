@@ -125,8 +125,7 @@ public class FlowerController {
 
 
     public boolean uploadFile(InputStream file){
-        ExcelParser excelParser = new ExcelParser(file);
-        excelParser.parseExcel();
+
 
         return true;
     }

@@ -12,7 +12,7 @@
 
 <div *ngIf="username && password">
     <h3>Upload CSV</h3>
-    <input type="file" (change)="fileChange($event)" placeholder="Upload file">
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.xlsx">
     <div><br><br></div>
     <hr>
 </div>
