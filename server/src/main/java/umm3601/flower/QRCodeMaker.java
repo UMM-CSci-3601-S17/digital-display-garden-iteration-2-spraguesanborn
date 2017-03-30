@@ -74,7 +74,7 @@ public class QRCodeMaker {
         for (String bed : beds){
             bedPath = imageDirectoryPath + bed + ".jpg";
 
-            url = "localhost:9000/" + bed;
+            url = "http://174.138.66.146:9000/api/" + bed;
 
             createQRCode(url, bedPath, charset, hintMap, 500, 500);
         }

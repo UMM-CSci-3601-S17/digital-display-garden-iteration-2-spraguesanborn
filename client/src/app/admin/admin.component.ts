@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { AdminService } from "./admin.service";
 import { Http } from '@angular/http';
 import {Observable} from "rxjs";
+
 @Component({
     selector: 'admin-component',
     templateUrl: 'admin.component.html'
