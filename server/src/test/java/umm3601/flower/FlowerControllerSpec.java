@@ -132,18 +132,18 @@ public class FlowerControllerSpec
         assertEquals("Name should match", "rose", rose.get("commonName"));
     }
 
-    @Test
-    public void testUploadFile() {
-        String filePath = "/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
-        Object object = new Object();
-        InputStream excelFile = object.getClass().getResourceAsStream(filePath);
-
-        flowerController.uploadFile(excelFile);
-
-        MongoClient mongoClient = new MongoClient();
-        MongoDatabase ddg = mongoClient.getDatabase("ddg");
-        MongoCollection flowers = ddg.getCollection("flowers");
-        assertEquals(1664, flowers.count());
-    }
+//    @Test
+//    public void testUploadFile() {
+//        String filePath = "/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
+//        Object object = new Object();
+//        InputStream excelFile = object.getClass().getResourceAsStream(filePath);
+//
+//        flowerController.uploadFile(excelFile);
+//
+//        MongoClient mongoClient = new MongoClient();
+//        MongoDatabase ddg = mongoClient.getDatabase("ddg");
+//        MongoCollection flowers = ddg.getCollection("flowers");
+//        assertEquals(1664, flowers.count());
+//    }
 }
 
