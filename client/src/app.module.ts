@@ -20,7 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './app/admin/admin.component';
 import { AdminService } from './app/admin/admin.service';
 import { FileUploadComponent } from './app/admin/FileUpload';
-import { QRCodeModule } from 'angular2-qrcode';
 
 
 @NgModule({
@@ -33,7 +32,6 @@ import { QRCodeModule } from 'angular2-qrcode';
         PipeModule,
         ReactiveFormsModule,
         RouterModule,
-        QRCodeModule
     ],
     declarations: [
         AppComponent,
