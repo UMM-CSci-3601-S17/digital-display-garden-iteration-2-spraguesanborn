@@ -25,7 +25,7 @@ export class FlowerComponent implements OnInit{
     public flower: Flower;
     public text: string;
     public myForm: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
+    public submitted: boolean = false; // keep track on whether form is submitted
     public events: any[] = []; // use later to display form changes
     private commentSucceed: Boolean = false;
     private incrementSucceed: Boolean = false;
