@@ -65,6 +65,11 @@
 </div>
 <br>
 
+<div *ngIf="incrementSucceed">
+    <p class="our-font pink-font">Thank you for your like!</p>
+</div>
+<br>
+
 <!--Comment box-->
 <div *ngIf="!submitted" class = "fullComment">
     <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
@@ -81,7 +86,7 @@
 </div>
 
 <div *ngIf="submitted">
-    <p class="our-font">Thank you for your comment!</p>
+    <p class="our-font pink-font">Thank you for your comment!</p>
 </div>
 
 <!--Styles-->
@@ -98,6 +103,9 @@
     }
     .white-font {
         color: white;
+    }
+    .pink-font {
+        color: #c0047b;
     }
     .btn-color {
         background-color: rgb(0, 77, 0);

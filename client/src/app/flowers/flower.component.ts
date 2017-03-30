@@ -82,6 +82,8 @@ export class FlowerComponent implements OnInit{
             }
         );
         this.incrementVisits(this.flower.id);
+        this.submitted=false;
+        this.incrementSucceed=false;
     }
 
     save(model: Feedback, isValid: boolean) {
